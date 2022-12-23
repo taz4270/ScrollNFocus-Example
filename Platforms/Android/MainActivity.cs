@@ -39,24 +39,24 @@ public class MainActivity : MauiAppCompatActivity, IOnGlobalFocusChangeListener
 
     public override bool OnTouchEvent(MotionEvent e)
     {
-        //if (CurrentFocus is not null)
-        //    CurrentFocus.ClearFocus();
+        if (CurrentFocus is not null)
+            CurrentFocus.ClearFocus();
 
         return base.OnTouchEvent(e);
     }
 
     void IOnGlobalFocusChangeListener.OnGlobalFocusChanged(AView oldFocus, AView newFocus)
     {
-        //if (newFocus is null && oldFocus is not null)
-        //{
-        //    InputMethodManager imm = InputMethodManager.FromContext(this);
+        if (newFocus is null && oldFocus is not null)
+        {
+            InputMethodManager imm = InputMethodManager.FromContext(this);
 
-        //    IBinder wt = oldFocus.WindowToken;
+            IBinder wt = oldFocus.WindowToken;
 
-        //    if (imm is null || wt is null)
-        //        return;
+            if (imm is null || wt is null)
+                return;
 
-        //    imm.HideSoftInputFromWindow(wt, HideSoftInputFlags.None);
-        //}
+            imm.HideSoftInputFromWindow(wt, HideSoftInputFlags.None);
+        }
     }
 }
